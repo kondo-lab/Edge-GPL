@@ -5,7 +5,6 @@ I. Program overview
 - Graph processing progam that runs daemon on compact devices with limited processing capability such as the Raspberry Pi.
 - Graphs are based on the Boost Graph Library (BGL)
 - Device connection established using sockets
-- Available in C++ and Python (optional)
 
 II. Installation
 
@@ -19,7 +18,6 @@ II. Installation
 - Run
      - server: $ ./server
      - client: $ ./client
-               $ python3 client_main.py
 
 III. Available commands in the progam
         CMD_EXIT:
