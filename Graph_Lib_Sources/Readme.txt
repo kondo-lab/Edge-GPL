@@ -46,7 +46,8 @@ III. Available commands in the program
             - Function: Add a new edge to the graph.
             - Input: Names of the source and target vertices, the edge weight.
             - Output: Status of the requested operation. (success/fail)
-            - Note: Does not add a new edge if either vertex does not exist. If the edge already exists, the weight of that edge is updated.
+            - Note: Does not add a new edge if either vertex does not exist. If the edge already exists, the weight of that edge is 
+                    updated.
         CMD_REMOVE_EDGE:
             - Function: Remove the edge from the graph.
             - Input: Names of the source and target.
@@ -113,9 +114,11 @@ III. Available commands in the program
             - Output: Status of the requested operation (success/fail). List of names of traversed vertices.
             - Note: The algorithm does not run if the supplied vertex does not exist.
         CMD_SPS:
-            - Function: Run Dijkstra's Shortest Path (Bellman-Ford for edge list) on the graph with the supplied source vertex as the root.
+            - Function: Run Dijkstra's Shortest Path (Bellman-Ford for edge list) on the graph with the supplied source vertex as the 
+                        root.
             - Input: Names of the source and target vertices.
-            - Output: Status of the requested operation (success/fail). List of names of traversed vertices in the path from the source vertex to the target.
+            - Output: Status of the requested operation (success/fail). List of names of traversed vertices in the path from the source 
+                      vertex to the target.
             - Note: The algorithm does not run if the either supplied vertices does not exist.
         CMD_CENTRALITY_ANALYSIS:
             - Function: Run Brandes Betweenness Centrality on the graph with the supplied vertex as the root.
@@ -128,7 +131,8 @@ III. Available commands in the program
             - Output: Status of the requested operation (success/fail). List of remaining edges.
             - Note: none
         CMD_DATA_CONCAT:
-            - Function: Calls Depth-First Search to be run on another daemon with the supplied vertex as the root vertex. Receives list of traversed vertices and edges that are added to the current graph (if they are not already in the graph)
+            - Function: Calls Depth-First Search to be run on another daemon with the supplied vertex as the root vertex. Receives list 
+                        of traversed vertices and edges that are added to the current graph (if they are not already in the graph)
             - Input: Vertex name and DFS host IP address.
             - Output: Status of the requested operation (success/fail). Number of added edges.
             - Note: The algorithm does not run if the supplied vertex does not exist in the DFS daemon or if the host IP does not exist.
@@ -159,26 +163,27 @@ III. Available commands in the program
             - Note: The algorithm does not run if the either supplied vertices does not exist.
         CMD_GRAPH_PARTITION:
             - Function: Perform graph partition, then save subgraphs to file.
-            - Input: Number of partitions and graph-cut type
+            - Input: Number of partitions and graph-cut type.
             - Output: Status of the requested operation (success/fail).
             - Note: none
         CMD_SUBGRAPH_INFO:
             - Function: Get subgraph information.
             - Input: none
-            - Output: Suitable to-be-handled subgraph and local source/destination nodes therein for navigation
+            - Output: Suitable to-be-handled subgraph and local source/destination nodes therein for navigation.
             - Note: none
         CMD_EVALUATE_PATH:
             - Function: Evaluate shortest path.
-            - Input: Candidate shortest path
-            - Output: Whether this entered shortest path can be used or not (confirmation or alarm) according to the number of overlapped nodes with other "determined paths"
+            - Input: Candidate shortest path.
+            - Output: Whether this entered shortest path can be used or not (confirmation or alarm) according to the number of 
+                      overlapped nodes with other "determined paths".
             - Note: none
         CMD_REGISTER_PATH:
             - Function: Add shortest path to "determined paths".
-            - Input: To-be-added path for group of "determined paths"
+            - Input: To-be-added path for group of "determined paths".
             - Output: Status of the requested operation (success/fail).
             - Note: none
         CMD_REMOVE_PATH:
             - Function: Remove shortest path from "determined paths".
-            - Input: To-be-removed path for group of "determined paths"
+            - Input: To-be-removed path for group of "determined paths".
             - Output: Status of the requested operation (success/fail).
             - Note: none
