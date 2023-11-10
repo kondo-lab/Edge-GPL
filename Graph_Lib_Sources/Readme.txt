@@ -1,10 +1,11 @@
-User Manual
+# Graph-Processing-Library (User Manual)
 
 I. Program overview
 
-- Graph processing progam that runs daemon on compact devices with limited processing capability such as the Raspberry Pi.
+- Graph processing program that runs daemon on compact devices with limited processing capability such as the Raspberry Pi.
 - Graphs are based on the Boost Graph Library (BGL)
 - Device connection established using sockets
+- Available in C++
 
 II. Installation
 
@@ -19,7 +20,8 @@ II. Installation
      - server: $ ./server
      - client: $ ./client
 
-III. Available commands in the progam
+III. Available commands in the program
+
         CMD_EXIT:
             - Function: Close the client.
             - Input: none
@@ -29,9 +31,9 @@ III. Available commands in the progam
             - Function: Add a new vertex to the graph.
             - Input: Vertex name.
             - Output: Status of the requested operation. (success/fail)
-            - Note: Does not add a new vertex if the suplied vertex anme already exists.
+            - Note: Does not add a new vertex if the supplied vertex name already exists.
         CMD_REMOVE_VERTEX:
-            - Function: Remove a vertex fromt the graph.
+            - Function: Remove a vertex from the graph.
             - Input: Vertex name.
             - Output: Status of the requested operation. (success/fail)
             - Note: Operation fails if the vertex does not exist.
@@ -49,7 +51,7 @@ III. Available commands in the progam
             - Function: Remove the edge from the graph.
             - Input: Names of the source and target.
             - Output: Status of the requested operation. (success/fail)
-            - Note: Operation fails if either vertices does not exist.
+            - Note: Operation fails if either vertex does not exist.
         CMD_NUM_EDGE:
             - Function: Returns the number of edges in the current graph.
             - Input: none
@@ -113,8 +115,7 @@ III. Available commands in the progam
         CMD_SPS:
             - Function: Run Dijkstra's Shortest Path (Bellman-Ford for edge list) on the graph with the supplied source vertex as the root.
             - Input: Names of the source and target vertices.
-            - Output: Status of the requested operation (success/fail). List of names of traversed vertices in the path
-                        from the source vertex to the target.
+            - Output: Status of the requested operation (success/fail). List of names of traversed vertices in the path from the source vertex to the target.
             - Note: The algorithm does not run if the either supplied vertices does not exist.
         CMD_CENTRALITY_ANALYSIS:
             - Function: Run Brandes Betweenness Centrality on the graph with the supplied vertex as the root.
@@ -127,13 +128,10 @@ III. Available commands in the progam
             - Output: Status of the requested operation (success/fail). List of remaining edges.
             - Note: none
         CMD_DATA_CONCAT:
-            - Function: Calls Depth-First Search to be run on another daemon with the supplied vertex
-                        as the root vertex. Receives list of traversed vertices and edges that are added to the current graph
-                        (if they are not already in the graph)
-            - Input: Vertex name and DFS host ip address.
+            - Function: Calls Depth-First Search to be run on another daemon with the supplied vertex as the root vertex. Receives list of traversed vertices and edges that are added to the current graph (if they are not already in the graph)
+            - Input: Vertex name and DFS host IP address.
             - Output: Status of the requested operation (success/fail). Number of added edges.
-            - Note: The algorithm does not run if the supplied vertex does not exist in the DFS daemon or if the host ip
-                    does not exist.
+            - Note: The algorithm does not run if the supplied vertex does not exist in the DFS daemon or if the host IP does not exist.
         CMD_QUIT_BACKEND:
             - Function: Close both the client and the server.
             - Input: none
@@ -149,25 +147,38 @@ III. Available commands in the progam
             - Input: none
             - Output: none
             - Note: Operation runs regardless of server status.
-			
-		CMD_LOAD_SUB_GRAPH:
-			- Load subgraph into memory on edge device
-			
-		CMD_SPS_ALL_PATH:
-			- List all shortest paths among two nodes of the graph
-
-        CMD_GRAPH_PARTITION
-            - Perform graph partition, then save subgraphs to file
-        
-        CMD_SUBGRAPH_INFO
-            - Get subgraph information
-
-        CMD_EVALUATE_PATH
-            - Evaluate shortest path
-
-        CMD_REGISTER_PATH
-            - Add shortest path to "determined paths"
-
-        CMD_REMOVE_PATH
-            - Remove shortest path from "determined paths"
-            
+        CMD_LOAD_SUB_GRAPH:
+            - Function: Load subgraph into memory on edge device.
+            - Input: File name.
+            - Output: Status of the requested operation (success/fail)
+            - Note: Operation fails if the file does not exist.
+        CMD_SPS_ALL_PATH:
+            - Function: List all shortest paths among two nodes of the graph.
+            - Input: Names of the source and target vertices.
+            - Output: Status of the requested operation (success/fail). List of qualified paths from the source vertex to the target.
+            - Note: The algorithm does not run if the either supplied vertices does not exist.
+        CMD_GRAPH_PARTITION:
+            - Function: Perform graph partition, then save subgraphs to file.
+            - Input: Number of partitions and graph-cut type
+            - Output: Status of the requested operation (success/fail).
+            - Note: none
+        CMD_SUBGRAPH_INFO:
+            - Function: Get subgraph information.
+            - Input: none
+            - Output: Suitable to-be-handled subgraph and local source/destination nodes therein for navigation
+            - Note: none
+        CMD_EVALUATE_PATH:
+            - Function: Evaluate shortest path.
+            - Input: Candidate shortest path
+            - Output: Whether this entered shortest path can be used or not (confirmation or alarm) according to the number of overlapped nodes with other "determined paths"
+            - Note: none
+        CMD_REGISTER_PATH:
+            - Function: Add shortest path to "determined paths".
+            - Input: To-be-added path for group of "determined paths"
+            - Output: Status of the requested operation (success/fail).
+            - Note: none
+        CMD_REMOVE_PATH:
+            - Function: Remove shortest path from "determined paths".
+            - Input: To-be-removed path for group of "determined paths"
+            - Output: Status of the requested operation (success/fail).
+            - Note: none
